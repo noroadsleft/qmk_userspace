@@ -26,6 +26,8 @@ enum userspace_keycodes {
     G_FTCH,
     G_BRCH,
     G_PWD,
+    M_11SPC,
+    M_11BS,
     M_SALL,
     M_UNDO,
     M_CUT,

@@ -32,5 +32,8 @@
 
 #define NO_ACTION_ONESHOT
 
+#define LEADER_TIMEOUT 250
+#define LEADER_PER_KEY_TIMING
+
 #define ANSI_NUBS_ROW 3
 #define ANSI_NUBS_COL 2

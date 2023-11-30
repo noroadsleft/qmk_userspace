@@ -4,3 +4,4 @@ SPACE_CADET_ENABLE = no     # Space Cadet
 DYNAMIC_MACRO_ENABLE = yes
 
 LTO_ENABLE = yes
+LEADER_ENABLE = yes

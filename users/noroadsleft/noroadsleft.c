@@ -72,6 +72,16 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 SEND_STRING("$( pwd | sed -e 's;^.*/keyboards/;;' -e 's;/;_;g')");
             };
             return false;
+        case M_11SPC:
+            if (record->event.pressed) {
+                SEND_STRING("           ");
+            };
+            return false;
+        case M_11BS:
+            if (record->event.pressed) {
+                SEND_STRING("\b\b\b\b\b\b\b\b\b\b\b");
+            };
+            return false;
         case M_SALL:
             if (record->event.pressed) {
                 tap_code16(C(KC_A));
