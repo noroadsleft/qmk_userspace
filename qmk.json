@@ -1,4 +1,8 @@
 {
     "userspace_version": "1.0",
-    "build_targets": []
+    "build_targets": [
+        ["kc60", "noroadsleft"],
+        ["coseyfannitutti/discipline", "noroadsleft"],
+        ["kbdfans/kbd75/rev1", "noroadsleft"]
+    ]
 }
