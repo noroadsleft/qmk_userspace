@@ -33,14 +33,6 @@ enum layer_names {
 };
 
 
-// KEYCODE DEFINITIONS
-enum keymap_keycodes {
-    G_AL = KEYMAP_SAFE_RANGE,
-    G_AMD,
-    G_ECL
-};
-
-
 #define FN_CAPS LT(_FN, KC_CAPS)  // Function Layer when held, Caps Lock when tapped
 #define CTL_GRV MT(MOD_LCTL, KC_GRV)  // Left Control when held, Grave accent when tapped
 
@@ -105,7 +97,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
 
     [_MA] = LAYOUT_60_ansi(
-        _______, M_11SPC, M_11BS,  G_AL,    G_AMD,   G_ECL,   _______, _______, _______, _______, _______, DM_REC1, DM_REC2, _______,
+        _______, M_11SPC, M_11BS,  G_AMD,   G_AL,    G_ECL,   _______, _______, _______, _______, _______, DM_REC1, DM_REC2, _______,
         _______, _______, _______, G_PUSH,  _______, _______, _______, _______, _______, _______, _______, DM_PLY1, DM_PLY2, DM_RSTP,
         _______, _______, _______, G_FTCH,  G_PWD,   _______, _______, _______, _______, _______, _______, _______,          _______,
         _______,          _______, _______, _______, _______, G_BRCH,  _______, _______, _______, _______, _______,          _______,
@@ -120,25 +112,4 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         XXXXXXX, XXXXXXX, XXXXXXX,                            XXXXXXX,                            XXXXXXX, XXXXXXX, _______, XXXXXXX
     ),
 
-};
-
-bool process_record_keymap(uint16_t keycode, keyrecord_t *record) {
-    switch (keycode) {
-        case G_AL:
-            if (record->event.pressed) {
-                SEND_STRING("echo -e \"Add \\`$(git ds0 -- info.json | sed -n '/LAYOUT/p' | sed -n '/^\\+/p' | sed -e 's;[^A-Za-z0-9_];;g')\\`\\n\\n[enhancement]\" > \"add_layout.txt\" && git commit -eF \"add_layout.txt\"\n");
-            };
-            return false;
-        case G_AMD:
-            if (record->event.pressed) {
-                SEND_STRING("echo -e \"Add layout/matrix diagram\\n\\n[docs]\" > \"commit.txt\" && git commit -F \"commit.txt\"\n");
-            };
-            return false;
-        case G_ECL:
-            if (record->event.pressed) {
-                SEND_STRING("echo -e \"Enable Community Layout support\\n\\n[enhancement]\" > \"commit.txt\" && git commit -eF \"commit.txt\"\n");
-            };
-            return false;
-    }  // switch()
-    return true;
 };

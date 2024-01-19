@@ -72,6 +72,21 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 SEND_STRING("$( pwd | sed -e 's;^.*/keyboards/;;' -e 's;/;_;g')");
             };
             return false;
+        case G_AMD:
+            if (record->event.pressed) {
+                SEND_STRING("echo -e \"Add layout/matrix diagram\\n\\n[docs]\" > \"commit.txt\" && git commit -F \"commit.txt\"\n");
+            };
+            return false;
+        case G_AL:
+            if (record->event.pressed) {
+                SEND_STRING("echo -e \"Add \\`$(git ds0 -- info.json | sed -n '/LAYOUT/p' | sed -n '/^\\+/p' | sed -e 's;[^A-Za-z0-9_];;g')\\`\\n\\n[enhancement]\" > \"add_layout.txt\" && git commit -eF \"add_layout.txt\"\n");
+            };
+            return false;
+        case G_ECL:
+            if (record->event.pressed) {
+                SEND_STRING("echo -e \"Enable Community Layout support\\n\\n[enhancement]\" > \"commit.txt\" && git commit -eF \"commit.txt\"\n");
+            };
+            return false;
         case M_11SPC:
             if (record->event.pressed) {
                 SEND_STRING("           ");
