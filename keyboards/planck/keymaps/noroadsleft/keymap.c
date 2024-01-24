@@ -15,7 +15,9 @@
  */
 
 #include "noroadsleft.h"
-#include "muse.h"
+#if defined(AUDIO_ENABLE)
+    #include "muse.h"
+#endif
 
 enum layer_names {
     _DV,
