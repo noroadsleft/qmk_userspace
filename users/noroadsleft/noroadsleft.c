@@ -17,6 +17,8 @@
 #include "noroadsleft.h"
 #include "version.h"
 
+bool is_shift_active = false;
+
 __attribute__((weak))
 bool process_record_keymap(uint16_t keycode, keyrecord_t *record) { return true; };
 
@@ -68,8 +70,16 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             return false;
         case G_PWD:
             if (record->event.pressed) {
-                clear_mods();
-                SEND_STRING("$( pwd | sed -e 's;^.*/keyboards/;;' -e 's;/;_;g')");
+                if ( get_mods() & MOD_MASK_SHIFT ) {
+                    is_shift_active = true;
+                    clear_mods();
+                }
+                SEND_STRING("$( pwd | sed -e 's;^.*/keyboards/;;'");
+                if ( is_shift_active == true ) {
+                    SEND_STRING(" -e 's;/;_;g'");
+                    is_shift_active = false;
+                }
+                SEND_STRING(")");
             };
             return false;
         case G_AMD:
