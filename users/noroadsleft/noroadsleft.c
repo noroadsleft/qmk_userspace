@@ -40,7 +40,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         case VRSN:
             if (record->event.pressed) {
-                SEND_STRING(QMK_KEYBOARD ":" QMK_KEYMAP " # @ " QMK_VERSION);
+                SEND_STRING(" -kb "QMK_KEYBOARD " -km " QMK_KEYMAP " # version[" QMK_VERSION "] builddate[" QMK_BUILDDATE "] githash[" QMK_GIT_HASH "]");
             }
             return false;
         case G_PUSH:
