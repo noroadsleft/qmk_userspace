@@ -84,17 +84,17 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             return false;
         case G_AMD:
             if (record->event.pressed) {
-                SEND_STRING("echo -e \"Add layout/matrix diagram\\n\\n[docs]\" > \"commit.txt\" && git commit -F \"commit.txt\"\n");
+                SEND_STRING("git commit -F <(echo -e \"Add layout/matrix diagram\\n\\n[docs]\")\n");
             };
             return false;
         case G_AL:
             if (record->event.pressed) {
-                SEND_STRING("echo -e \"Add \\`$(git ds0 -- info.json | sed -n '/LAYOUT/p' | sed -n '/^\\+/p' | sed -e 's;[^A-Za-z0-9_];;g')\\`\\n\\n[enhancement]\" > \"add_layout.txt\" && git commit -eF \"add_layout.txt\"\n");
+                SEND_STRING("git commit -F <(echo -e \"Add \\`$(git ds0 -- info.json keyboard.json | sed -n '/LAYOUT/p' | sed -n '/^\\+/p' | sed -e 's;[^A-Za-z0-9_];;g')\\`\\n\\n[enhancement]\")\n");
             };
             return false;
         case G_ECL:
             if (record->event.pressed) {
-                SEND_STRING("echo -e \"Enable Community Layout support\\n\\n[enhancement]\" > \"commit.txt\" && git commit -eF \"commit.txt\"\n");
+                SEND_STRING("git commit -F <(echo -e \"Enable Community Layout support\\n\\n[enhancement]\")\n");
             };
             return false;
         case M_11SPC:
